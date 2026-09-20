@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Message Monitor</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 16px; }
+    input { padding: 8px; margin-bottom: 16px; width: 220px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }
+    #error { color: #b00020; }
+  </style>
+</head>
+<body>
+  <h1>Market Message Monitor</h1>
+  <p>Aggregated broker market data.</p>
+  <input id="symbolFilter" placeholder="Filter symbol, e.g. EURUSD" />
+  <p id="status">Loading...</p>
+  <p id="error"></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th><th>Best Bid</th><th>Best Ask</th><th>Total Quantity</th><th>Messages</th>
+      </tr>
+    </thead>
+    <tbody id="summaryBody"></tbody>
+  </table>
+  <script src="/app.js"></script>
+</body>
+</html>
