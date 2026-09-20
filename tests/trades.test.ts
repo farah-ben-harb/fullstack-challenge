@@ -48,5 +48,41 @@ test("buildSummary computes best bid, best ask and totals", () => {
     messageCount: 4
   }]);
 });
+//edge cases
+test("buildSummary keeps bestAsk null when a symbol has only BUY messages", () => {
+  const result = buildSummary([
+    {
+      id: 1,
+      symbol: "EURUSD",
+      side: "BUY",
+      price: 1.0812,
+      quantity: 100,
+      broker: "Alpha",
+    },
+    {
+      id: 2,
+      symbol: "EURUSD",
+      side: "BUY",
+      price: 1.0815,
+      quantity: 200,
+      broker: "Beta",
+    },
+  ]);
 
+  assert.deepEqual(result, [
+    {
+      symbol: "EURUSD",
+      bestBid: 1.0815,
+      bestAsk: null,
+      totalQuantity: 300,
+      messageCount: 2,
+    },
+  ]);
+});
+
+test("buildSummary returns an empty array for empty input", () => {
+  const result = buildSummary([]);
+
+  assert.deepEqual(result, []);
+});
 /* TODO 7: add at least one useful edge-case test */
